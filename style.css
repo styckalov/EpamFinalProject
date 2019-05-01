@@ -1,0 +1,192 @@
+body {
+  margin: 0;
+  font-family: "Muli", sans-serif;
+}
+
+.menu {
+  color: white;
+  font-weight: 100;
+  background: #606d7e;
+  width: 250px;
+  height: 100%;
+  top: 0;
+  padding-left: 50px;
+  position: fixed;
+  z-index: 2;
+  left: -260px;
+  box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  color: #222;
+}
+.menu:hover,
+.menu:focus {
+  transform: translate3d(230px, 0, 0);
+  animation-timing-function: 1s ease-in;
+}
+.menu .title {
+  color: white;
+  top: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: rotate(270deg);
+  left: 250px;
+  font-weight: 800;
+  font-size: 15px;
+}
+.menu .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 100;
+}
+.menu .nav li {
+  padding-bottom: 30px;
+  list-style-type: none;
+}
+.menu ul {
+  display: block;
+  padding-left: 20px;
+}
+.menu .nav li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s;
+}
+.menu .nav li a i {
+  position: relative;
+  top: 4px;
+  margin-right: 3px;
+}
+.menu .nav li a:hover {
+  color: #aaa;
+}
+header {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-color: #606d7e;
+  padding: 20px 10px;
+}
+.circle {
+  width: 140px;
+  border-radius: 30%;
+  border: 3px solid white;
+}
+header p {
+  text-align: center;
+  color: white;
+  font-weight: 800;
+}
+.profileInfo p {
+  color: white;
+}
+.menu h3 {
+  margin-top: 50px;
+  color: white;
+}
+.galleryElement img {
+  max-width: 640px;
+  max-height: 400px;
+}
+.galleryElement p {
+  padding: 15px;
+  text-align: center;
+}
+#gallery {
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.profileInfo {
+  margin-top: 50px;
+}
+.galleryElement:hover {
+  border: 1px solid #777;
+}
+.galleryElement {
+  margin: 20px 0 0 150px;
+  border: 1px solid #ccc;
+  padding: 0 6px;
+}
+
+@media only screen and (max-width: 700px) {
+  .galleryElement  {
+    width: 50%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .galleryElement i{
+    width: 100%;
+  }
+}
+#uploadForm {
+  text-align: center;
+  z-index: 3;
+}
+#modal {
+  left: 50%;
+  margin: -250px 0 0 -40%;
+  opacity: 0;
+  position: absolute;
+  top: -50%;
+  visibility: hidden;
+  width: 80%;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+#modal:target {
+  opacity: 1;
+  top: 50%;
+  visibility: visible;
+}
+#modal .header,
+#modal .footer {
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 5px 5px 0 0;
+}
+#modal .footer {
+  border: none;
+  border-top: 1px solid #e7e7e7;
+  border-radius: 0 0 5px 5px;
+}
+#modal h2 {
+  margin: 0;
+}
+#modal .btn {
+  float: right;
+}
+#modal .copy,
+#modal .header,
+#modal .footer {
+  padding: 15px;
+}
+.modal-content {
+  background: #f7f7f7;
+  position: relative;
+  z-index: 20;
+  border-radius: 5px;
+}
+#modal .copy {
+  background: #fff;
+}
+
+#modal .overlay {
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}

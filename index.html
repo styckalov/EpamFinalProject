@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script defer src="js/main.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <header>
+    <p>ФотоСтрана</p>
+  </header>
+  <body>
+    <input id="upload" type="file" style="display:none" />
+    <div class="menu">
+      <h3>My photo album</h3>
+      <div class="profileInfo">
+        <img class="circle" src="./img/ava.jpg" alt="" />
+        <p>Стукалов Дмитрий</p>
+      </div>
+      <div class="title">MENU</div>
+      <ul class="nav">
+        <li>
+          <a href="#gallery" id="myGallery"><i class="material-icons">account_box</i>My gallery</a>
+        </li>
+        <li>
+            <a href="#modal" type="file">
+              <i class="material-icons">add_photo_alternate</i>Add a picture
+            </a>
+        </li>
+        <li>
+          <a href="#"><i class="material-icons">person_outline</i>Friends</a>
+        </li>
+        <li>
+          <input type="search" id="searchImage" placeholder="Search" />
+        </li>
+      </ul>
+    </div>
+    <div id="gallery"></div>
+    <form>
+      <input type="file" name="image" id="imageLoader">
+    </form>
+    <div id="modal">
+      <div class="modal-content">
+        <div class="header">
+          <h2>Insert link to your picture and write simple discription</h2>
+        </div>
+        <div class="copy">
+          <input type="text" id="link" placeholder="Link">
+          <input type="text" id="disc" placeholder="Discription">
+          <button type="submit" id="sendImage">Upload Image</button>
+        </div>
+        <div class="cf footer">
+          <a href="#" style="text-decoration:none; color:black;">Close</a>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </body>
+</html>
