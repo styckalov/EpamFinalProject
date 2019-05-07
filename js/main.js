@@ -1,48 +1,68 @@
 const INITIAL_GALLERY_INFO = [
-    {src: "./img/img_forest.jpg", description: "Красивый зеленый лес"},
-    {src: "./img/img_5terre.jpg", description: "Великолепный приморский город"},
-    {src: "./img/img_lights.jpg", description: "Фантастическое северное сияние"},
-    {src: "./img/img_mountains.jpg", description: "Завораживающие Карпатские горы"},
-    {src: "./img/img_forest.jpg", description: "Красивый зеленый лес"},
-    {src: "./img/img_5terre.jpg", description: "Великолепный приморский город"},
-    {src: "./img/img_lights.jpg", description: "Фантастическое северное сияние"},
-    {src: "./img/img_mountains.jpg", description: "Завораживающие Карпатские горы"}
+  {
+    src: "./img/img_forest.jpg",
+    description: "Красивый зеленый лес"
+  },
+  { src: "./img/img_5terre.jpg",
+    description: "Великолепный приморский город" 
+  },
+  {
+    src: "./img/img_lights.jpg",
+    description: "Фантастическое северное сияние"
+  },
+  {
+    src: "./img/img_mountains.jpg",
+    description: "Завораживающие Карпатские горы"
+  },
+  { src: "./img/img_forest.jpg",
+    description: "Красивый зеленый лес" 
+  },
+  { src: "./img/img_5terre.jpg",
+    description: "Великолепный приморский город"
+  },
+  {
+    src: "./img/img_lights.jpg",
+    description: "Фантастическое северное сияние"
+  },
+  {
+    src: "./img/img_mountains.jpg",
+    description: "Завораживающие Карпатские горы"
+  }
 ];
 
-const GALLERY = 'GALLERY_ITEMS';
+const GALLERY = "GALLERY_ITEMS";
 
 let galleryList;
 
 const getItemFromStorage = () => {
   const item = localStorage.getItem(GALLERY);
   return JSON.parse(item);
-}
+};
 
-const setItemInStorage = (value) => {
+const setItemInStorage = value => {
   localStorage.setItem(GALLERY, JSON.stringify(value));
   return getItemFromStorage(GALLERY);
-}
+};
 
-const removeImageFromGallery = (index) => {
+const removeImageFromGallery = index => {
   let clearedGalleryList = [...galleryList];
   clearedGalleryList.splice(index, 1);
-  console.log(clearedGalleryList);
   galleryList = setItemInStorage(clearedGalleryList);
-  renderGallery()
-}
+  renderGallery();
+};
 
 function initApp() {
   galleryList = getItemFromStorage();
   if (!galleryList) {
     galleryList = setItemInStorage(INITIAL_GALLERY_INFO);
   }
-  renderGallery()
+  renderGallery();
 }
 
 let gallery = document.querySelector("#gallery");
 
 function renderGallery() {
-  gallery.innerHTML = '';
+  gallery.innerHTML = "";
   galleryList.forEach((element, index) => addImageToGallery(element, index));
 }
 
@@ -61,7 +81,7 @@ function search(inputValue) {
     alert("No matches found");
   } else {
     gallery.innerHTML = null;
-    renderGallery(response);
+    response.forEach((element, index) => addImageToGallery(element, index));
   }
 }
 
@@ -76,13 +96,12 @@ input.addEventListener("keydown", function() {
 
 document.querySelector("#myGallery").addEventListener("click", function() {
   gallery.innerHTML = null;
-  renderGallery(galleryList);
+  renderGallery();
 });
 
 let imageLink = document.querySelector("#link");
 let imageDescription = document.querySelector("#disc");
 let uploadButton = document.querySelector("#sendImage");
-let imageLoaderPlaceholder = ''; // Here is variable holder for image base64 data
 
 const addImageToGallery = (galleryItem, index) => {
   let galleryElement = document.createElement("div");
@@ -91,46 +110,58 @@ const addImageToGallery = (galleryItem, index) => {
   picture.src = galleryItem.src;
   let description = document.createElement("p");
   description.textContent = galleryItem.description;
-  let deleteButton = document.createElement("button");
-  deleteButton.addEventListener('click', () => {
+  let deleteButton = document.createElement("i");
+  deleteButton.addEventListener("click", () => {
     removeImageFromGallery(index);
-  })
-  deleteButton.innerText = 'DELETE ME!';
+  });
+  deleteButton.textContent = "delete";
+  deleteButton.className = "material-icons deleteButton";
   galleryElement.appendChild(picture);
   galleryElement.appendChild(description);
   galleryElement.appendChild(deleteButton);
   gallery.appendChild(galleryElement);
-}
+};
 
 function saveImage(imageLink, imageDescription) {
   galleryList = setItemInStorage([
     ...galleryList,
     { src: imageLink, description: imageDescription }
   ]);
-  addImageToGallery({ src: imageLink, description: imageDescription }, galleryList.length - 1);
+  addImageToGallery(
+    { src: imageLink, description: imageDescription },
+    galleryList.length - 1
+  );
 }
 
-uploadButton.addEventListener("click", function() {
-  imageLink = imageLink.value;
-  imageDescription = imageDescription.value;
-  saveImage(imageLink, imageDescription);
-  document.querySelector("#modal").style = "visibility: hidden";
-});
+let imageLoaderPlaceholder = ""; //placeholder for base64
+let imageLoader = document.querySelector("#imageLoader");
 
-initApp();
+uploadButton.addEventListener("click", function() {
+  imageDescription = imageDescription.value;
+  if (!imageLink.value && !imageLoader.value) {
+    alert('Choose your photo')
+  }
+  else if (imageLink.value) {
+    imageLink = imageLink.value;
+    saveImage(imageLink, imageDescription);
+  }
+  else if (imageLoader.value) {
+    console.log('loaded')
+  readURL(imageLoader);
+  }
+  document.querySelector('#close').click(); 
+});
 
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
 
-    reader.onload = function (e) {
+    reader.onload = function(e) {
       imageLoaderPlaceholder = e.target.result;
-      saveImage(imageLoaderPlaceholder, 'Description example');
+      saveImage(imageLoaderPlaceholder, imageDescription);
     };
     reader.readAsDataURL(input.files[0]);
   }
 }
 
-$("#imageLoader").change(function() {
-  readURL(this);
-});
+initApp();
