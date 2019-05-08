@@ -85,11 +85,11 @@ function search(inputValue) {
   }
 }
 
-let input = document.getElementById("searchImage");
+let searchInput = document.getElementById("searchImage");
 
-input.addEventListener("keydown", function() {
+searchInput.addEventListener("keydown", function() {
   if (event.keyCode === 13) {
-    inputValue = input.value;
+    inputValue = searchInput.value;
     search(inputValue);
   }
 });
@@ -133,7 +133,7 @@ function saveImage(imageLink, imageDescription) {
   );
 }
 
-let imageLoaderPlaceholder = ""; //placeholder for base64
+let imageLoaderPlaceholder = "";
 let imageLoader = document.querySelector("#imageLoader");
 
 uploadButton.addEventListener("click", function() {
@@ -146,7 +146,6 @@ uploadButton.addEventListener("click", function() {
     saveImage(imageLink, imageDescription);
   }
   else if (imageLoader.value) {
-    console.log('loaded')
   readURL(imageLoader);
   }
   document.querySelector('#close').click(); 

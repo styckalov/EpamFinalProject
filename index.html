@@ -50,7 +50,7 @@
           <h2>Insert link to your picture and write simple discription</h2>
         </div>
         <div class="copy">
-          <form>
+          <form autocomplete="off">
             <input type="radio" name="chooseLoad" id="fromPC_radio">
             <input type="radio" name="chooseLoad" id="fromWeb_radio">
             <label for="fromPC_radio" id="fromPC">Upload from PC</label>
@@ -58,7 +58,7 @@
             <input type="file" name="image" id="imageLoader" class="hide" />
             <input type="text" id="link" placeholder="Link" class=" hide" />
             <input type="text" id="disc" class="hide" placeholder="Discription" /> <br> <br>
-            <button type="submit" id="sendImage" class="hide">Upload Image</button>
+            <button id="sendImage" class="hide">Upload Image</button>
             <input type="reset" id="resetForm" class="hide" value="Reset">
           </form>
         </div>
@@ -70,6 +70,5 @@
       </div>
       <div class="overlay"></div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </body>
 </html>
